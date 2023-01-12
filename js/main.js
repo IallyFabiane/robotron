@@ -38,6 +38,7 @@ const pecas = {
 controle.forEach( (elemento) => {
     elemento.addEventListener('click', (evento) => {
         manipulaDados(evento.target.dataset.controle, evento.target.parentNode) //dataset.controle captura o valor do data-controle
+        atualizaEstatisticas(evento.target.dataset.peca)
     })
 })
 
@@ -49,4 +50,11 @@ function manipulaDados(operacao, controle) {
     } else {
         peca.value = parseInt(peca.value) + 1
     }
+}
+
+function atualizaEstatisticas(peca) {
+     //retorno do objeto que corresponde a cada peça com a notação de colchetes
+    estatistica.forEach( (elemento) => {
+        elemento.textContent = parseInt(elemento.textContent) + pecas[peca][elemento.dataset.estatistica]
+    })
 }
